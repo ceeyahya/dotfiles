@@ -66,3 +66,10 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.html" },
+  callback = function()
+    vim.cmd "set filetype=htmldjango"
+  end,
+})

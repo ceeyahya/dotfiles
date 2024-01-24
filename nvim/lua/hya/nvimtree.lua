@@ -39,7 +39,7 @@ function M.config()
       root_folder_label = ":t",
       indent_width = 2,
       indent_markers = {
-        enable = false,
+        enable = true,
         inline_arrows = true,
         icons = {
           corner = "└",
@@ -77,7 +77,7 @@ function M.config()
           },
         },
       },
-      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", ".env", ".env.example" },
       symlink_destination = true,
     },
     update_focused_file = {

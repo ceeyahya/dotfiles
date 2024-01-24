@@ -68,6 +68,7 @@ function M.config()
     "gopls",
     "eslint",
     "rust_analyzer",
+    "emmet_ls",
   }
 
   local default_diagnostic_config = {

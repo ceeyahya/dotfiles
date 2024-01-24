@@ -192,7 +192,7 @@ function M.config()
         scrolloff = 8,
       },
       documentation = {
-        border = "solid",
+        border = "single",
         winhighlight = "FloatBorder:FloatBorder,Search:None",
       },
     },

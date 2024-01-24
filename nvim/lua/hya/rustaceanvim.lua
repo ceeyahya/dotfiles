@@ -14,7 +14,6 @@ function M.config()
         ["rust-analyzer"] = {},
       },
     },
-    -- DAP configuration
     dap = {},
   }
 end

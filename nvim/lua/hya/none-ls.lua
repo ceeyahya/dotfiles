@@ -19,7 +19,7 @@ function M.config()
       diagnostics.eslint,
 
       formatting.black,
-      diagnostics.mypy,
+      formatting.isort,
       diagnostics.ruff,
 
       formatting.prettierd.with {

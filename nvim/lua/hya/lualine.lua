@@ -7,7 +7,7 @@ function M.config()
 
   require("lualine").setup {
     options = {
-      theme = "catppuccin",
+      theme = require("hya.lualine-theme").theme(),
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       ignore_focus = { "NvimTree" },

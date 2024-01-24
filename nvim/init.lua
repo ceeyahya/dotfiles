@@ -18,7 +18,6 @@ spec "hya.lualine"
 spec "hya.navic"
 spec "hya.breadcrumbs"
 spec "hya.harpoon"
-spec "hya.neoscroll"
 spec "hya.illuminate"
 spec "hya.oil"
 spec "hya.indentline"
@@ -40,7 +39,8 @@ spec "hya.ts-autotag"
 spec "hya.vimwiki"
 spec "hya.rust"
 spec "hya.rustaceanvim"
-
--- spec("hya.ufo")
+spec "hya.venv-selector"
+spec "hya.ufo"
+spec "hya.neogit"
 
 require "hya.lazy"

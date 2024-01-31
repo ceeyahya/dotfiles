@@ -69,6 +69,7 @@ function M.config()
     "eslint",
     "rust_analyzer",
     "emmet_ls",
+    "prismals",
   }
 
   local default_diagnostic_config = {

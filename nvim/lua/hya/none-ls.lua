@@ -17,6 +17,7 @@ function M.config()
       formatting.prettierd,
       formatting.rustywind,
       diagnostics.eslint,
+      -- formatting.prismaFmt,
 
       formatting.black,
       formatting.isort,

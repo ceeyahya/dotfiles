@@ -8,14 +8,14 @@ local M = {
 function M.config()
   require("catppuccin").setup {
     flavour = "mocha",
-    transparent_background = true, -- disables setting the background color.
-    show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
-    term_colors = false,           -- sets terminal colors (e.g. `g:terminal_color_0`)
-    no_italic = false,             -- Force no italic
-    no_bold = false,               -- Force no bold
-    no_underline = true,           -- Force no underline
-    styles = {                     -- Handles the styles of general hi groups (see `:h highlight-args`):
-      comments = { "italic" },     -- Change the style of comments
+    transparent_background = true,
+    show_end_of_buffer = false,
+    term_colors = false,
+    no_italic = false,
+    no_bold = false,
+    no_underline = false,
+    styles = {
+      comments = { "italic" },
       conditionals = {},
       loops = {},
       functions = {},
@@ -25,13 +25,11 @@ function M.config()
       numbers = {},
       booleans = {},
       properties = {},
-      types = { "bold" },
+      types = {},
       operators = {},
     },
     color_overrides = {
-      all = {
-        -- base = "#141414",
-      },
+      all = {},
     },
     custom_highlights = {},
     highlight_overrides = {

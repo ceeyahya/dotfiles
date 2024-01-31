@@ -33,7 +33,7 @@ function M.config()
     renderer = {
       add_trailing = false,
       group_empty = false,
-      highlight_git = false,
+      highlight_git = true,
       full_name = false,
       highlight_opened_files = "none",
       root_folder_label = ":t",
@@ -57,7 +57,7 @@ function M.config()
           symlink = icons.ui.FileSymlink,
           bookmark = icons.ui.BookMark,
           folder = {
-            arrow_closed = icons.ui.ChevronRight,
+            arrow_closed = icons.ui.ChevronShortRight,
             arrow_open = icons.ui.ChevronShortDown,
             default = icons.ui.Folder,
             open = icons.ui.FolderOpen,
@@ -77,7 +77,7 @@ function M.config()
           },
         },
       },
-      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", ".env", ".env.example" },
+      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
       symlink_destination = true,
     },
     update_focused_file = {

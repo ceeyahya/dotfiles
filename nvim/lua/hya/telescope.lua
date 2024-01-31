@@ -3,12 +3,12 @@ local M = {
   dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true } },
   command = "Telescope",
 }
-
 function M.config()
   local keymap = vim.keymap
   local builtin = require "telescope.builtin"
   local icons = require "hya.icons"
   local actions = require "telescope.actions"
+  local themes = require "telescope.themes"
 
   keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
   keymap.set("n", "<leader>bb", builtin.buffers, { desc = "Find Buffer" })
@@ -18,6 +18,7 @@ function M.config()
 
   require("telescope").setup {
     defaults = {
+      borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
       prompt_prefix = icons.ui.Search .. " ",
       selection_caret = icons.ui.Triangle .. " ",
       entry_prefix = "   ",
@@ -73,7 +74,6 @@ function M.config()
         previewer = true,
       },
       buffers = {
-        theme = "ivy",
         previewer = false,
         initial_mode = "normal",
         mappings = {

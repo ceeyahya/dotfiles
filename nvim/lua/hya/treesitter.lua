@@ -24,6 +24,7 @@ function M.config()
     sync_install = false,
     highlight = {
       enable = true,
+      vim_regex_highlighting = false,
     },
     indent = { enable = true },
   }

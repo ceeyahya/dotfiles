@@ -41,6 +41,6 @@ spec "hya.rust"
 spec "hya.rustaceanvim"
 spec "hya.venv-selector"
 spec "hya.ufo"
-spec "hya.neogit"
+spec "hya.vim-fugitive"
 
 require "hya.lazy"

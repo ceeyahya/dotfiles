@@ -10,7 +10,8 @@ end
 -- appearance
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.9
-config.font = wezterm.font("JetBrainsMono Nerd Font Propo")
+config.macos_window_background_blur = 20
+config.font = wezterm.font("Iosevka Nerd Font Propo")
 config.font_size = 14
 config.scrollback_lines = 3000
 config.use_fancy_tab_bar = false
@@ -36,8 +37,7 @@ wezterm.on("gui-startup", function()
 	window:gui_window():maximize()
 end)
 
--- show status (folder, program, time)
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-status", function(window, pane)
 	local stat = window:active_workspace()
 
 	if window:active_key_table() then
@@ -56,7 +56,6 @@ wezterm.on("update-right-status", function(window, pane)
 	local cmd = basename(pane:get_foreground_process_name())
 	local time = wezterm.strftime("%H:%M")
 	window:set_right_status(wezterm.format({
-		-- Wezterm has a built-in nerd fonts
 		{ Foreground = { Color = "F38BA8" } },
 		{ Text = wezterm.nerdfonts.md_cog .. " " .. stat },
 		"ResetAttributes",

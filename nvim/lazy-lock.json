@@ -13,7 +13,6 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "codeium.nvim": { "branch": "main", "commit": "f871000e91faa9ed334da2bfa4eadbf54d0e1047" },
-  "diffview.nvim": { "branch": "main", "commit": "3dc498c9777fe79156f3d32dddd483b8b3dbd95f" },
   "dressing.nvim": { "branch": "master", "commit": "94b0d24483d56f3777ee0c8dc51675f21709318c" },
   "eyeliner.nvim": { "branch": "main", "commit": "c540d58bf52aa979d4cca639c60387ae0c0ccf88" },
   "fidget.nvim": { "branch": "main", "commit": "3a93300c076109d86c7ce35ec67a8034ae6ba9db" },
@@ -27,7 +26,6 @@
   "mason.nvim": { "branch": "main", "commit": "e110bc3be1a7309617cecd77bfe4bf86ba1b8134" },
   "modicator.nvim": { "branch": "main", "commit": "d22c02c007170ab432ca3e166a1da56297767e87" },
   "neodev.nvim": { "branch": "main", "commit": "be8d4d4cab6c13c6a572269c9d6a63774baba9a0" },
-  "neogit": { "branch": "master", "commit": "ce0c369ccdba3f644a3b28f4c053421f435352c9" },
   "neotab.nvim": { "branch": "master", "commit": "f831660ace2660b9f3da78c1b19650c60f179e02" },
   "neotest": { "branch": "master", "commit": "1ee3fcc150207f33dba8c9b3f478e5a0148d661d" },
   "neotest-go": { "branch": "main", "commit": "d29d20d912aca81a07c50022d880cc66f0d26542" },
@@ -62,6 +60,7 @@
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "master", "commit": "87e92ea31b2b61d45ad044cf7b2d9b66dad2a618" },
   "venv-selector.nvim": { "branch": "main", "commit": "fcb30164f2c4f8a34a305ead3247954a1fd8634f" },
+  "vim-fugitive": { "branch": "master", "commit": "f116dcc8e21021e6fbfb6b0a9f8f7b9566d933f4" },
   "vim-illuminate": { "branch": "master", "commit": "3bd2ab64b5d63b29e05691e624927e5ebbf0fb86" },
   "vim-matchup": { "branch": "master", "commit": "e2cca1747ab175b8d839a5d28679427564643a57" },
   "vimwiki": { "branch": "dev", "commit": "0bb1b4945bb205a076a35b66174e5d66be8eaafe" }

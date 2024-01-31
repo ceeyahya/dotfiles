@@ -14,7 +14,7 @@ end
 
 function M.mark_file()
   require("harpoon.mark").add_file()
-  vim.notify "󱡅 Marked File"
+  vim.notify "󱡅  Marked File"
 end
 
 return M

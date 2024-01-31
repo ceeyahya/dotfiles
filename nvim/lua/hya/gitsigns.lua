@@ -6,6 +6,11 @@ local M = {
 
 M.config = function()
   local icons = require "hya.icons"
+  local keymap = vim.keymap.set
+  local opts = { noremap = true, silent = true }
+
+  keymap("n", "<leader>gh", ":Gitsigns preview_hunk<CR>", opts)
+  keymap("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", opts)
 
   require("gitsigns").setup {
     signs = {

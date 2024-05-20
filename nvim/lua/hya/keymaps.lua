@@ -11,14 +11,9 @@ keymap.set("n", "<Esc>", ":nohl<CR>", opts)
 
 -- don't to clipboard when delete single character
 keymap.set("n", "x", '"_x', opts)
+
 -- preserve the clipboard when pasting on top of something
 keymap.set("x", "p", [["_dP]])
-
--- better window navigation
-keymap.set("n", "<C-h>", "<C-w>h", opts)
-keymap.set("n", "<C-j>", "<C-w>j", opts)
-keymap.set("n", "<C-k>", "<C-w>k", opts)
-keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- center on search
 keymap.set("n", "n", "nzz", opts)
@@ -55,10 +50,15 @@ keymap.set("n", "<leader>w", ":bdelete<CR>", opts)
 -- insert mode keymaps --
 keymap.set("i", "jk", "<ESC>", opts)
 
--- visual Mode Keymaps --
+-- visual mode keymaps --
 -- stay in indent mode
 keymap.set("v", "<", "<gv", opts)
 keymap.set("v", ">", ">gv", opts)
 
 -- nvim tree toggle
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+-- gopher.nvim keymaps
+keymap.set("n", "<leader>gj", "<CMD> GoTagAdd json <CR>", opts)
+keymap.set("n", "<leader>gy", "<CMD> GoTagAdd yaml <CR>", opts)
+keymap.set("n", "<leader>ie", "<CMD> GoIfErr <CR>", opts)

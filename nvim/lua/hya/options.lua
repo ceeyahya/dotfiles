@@ -39,6 +39,9 @@ vim.opt.title = false
 
 vim.opt.shortmess:append "c"
 
+-- add the templ extension
+vim.filetype.add { extension = { templ = "templ" } }
+
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 

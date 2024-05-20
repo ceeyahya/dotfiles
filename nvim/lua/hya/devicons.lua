@@ -7,6 +7,11 @@ function M.config()
   local devicons = require "nvim-web-devicons"
 
   devicons.set_icon {
+    go = {
+      icon = "󰟓 ",
+      color = "#23add9",
+      name = "go",
+    },
     astro = {
       icon = "󰫢",
       color = "#FF4E19",

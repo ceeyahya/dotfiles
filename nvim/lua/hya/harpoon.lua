@@ -10,6 +10,10 @@ function M.config()
 
   keymap("n", "<S-m>", "<cmd>lua require('hya.harpoon').mark_file()<CR>", opts)
   keymap("n", "<TAB>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+
+  require("harpoon").setup {
+    save_on_toggle = true,
+  }
 end
 
 function M.mark_file()

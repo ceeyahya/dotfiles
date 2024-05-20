@@ -1,5 +1,8 @@
 local M = {
   "nvimtools/none-ls.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
 }
 
 function M.config()
@@ -16,12 +19,15 @@ function M.config()
 
       formatting.prettierd,
       formatting.rustywind,
-      diagnostics.eslint,
-      -- formatting.prismaFmt,
+      -- diagnostics.eslint,
+
+      formatting.gofumpt,
+      formatting.goimports_reviser,
+      formatting.golines,
 
       formatting.black,
       formatting.isort,
-      diagnostics.ruff,
+      diagnostics.mypy,
 
       formatting.prettierd.with {
         extra_filetypes = { "svelte", "astro" },
@@ -29,6 +35,7 @@ function M.config()
 
       null_ls.builtins.completion.spell,
     },
+
     on_attach = function(client, bufnr)
       if client.supports_method "textDocument/formatting" then
         vim.api.nvim_clear_autocmds {

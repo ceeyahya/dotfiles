@@ -70,6 +70,8 @@ function M.config()
     "rust_analyzer",
     "emmet_ls",
     "prismals",
+    "htmx",
+    "templ",
   }
 
   local default_diagnostic_config = {
@@ -115,6 +117,46 @@ function M.config()
     local require_ok, settings = pcall(require, "hya.lspsettings." .. server)
     if require_ok then
       opts = vim.tbl_deep_extend("force", settings, opts)
+    end
+
+    if server == "htmx" then
+      lspconfig.htmx.setup {
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+        filetypes = { "html", "templ" },
+      }
+    end
+
+    if server == "tailwindcss" then
+      lspconfig.tailwindcss.setup {
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        init_options = { userLanguages = { templ = "html" } },
+      }
+    end
+
+    if server == "gopls" then
+      lspconfig.gopls.setup {
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+        cmd = {
+          "gopls",
+        },
+        filetypes = { "go", "gomod", "gowork", "gotempl" },
+        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true,
+              shadow = true,
+            },
+            staticcheck = true,
+          },
+        },
+      }
     end
 
     if server == "lua_ls" then

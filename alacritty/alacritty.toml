@@ -4,7 +4,7 @@ import = [
 
 live_config_reload = true
 
-[ env ]
+[env]
 TERM = "xterm-256color"
 
 [window]
@@ -17,6 +17,7 @@ startup_mode = "Maximized"
 hide_when_typing = true
 
 [font]
-normal.family = "ZedMono NFP"
+normal.family = "BerkeleyMono Nerd Font Mono"
+bold.style = "Regular"
 builtin_box_drawing = true
-size = 14
+size = 15

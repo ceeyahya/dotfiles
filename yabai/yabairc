@@ -49,6 +49,7 @@ yabai -m rule --add app="^Skim$" manage=off
 yabai -m rule --add app="^Zoom$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Simulator$" manage=off
+yabai -m rule --add app="^Vysor$" manage=off
 
 yabai -m config
 								window_border on 											\

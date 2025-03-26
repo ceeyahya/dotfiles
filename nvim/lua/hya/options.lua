@@ -37,6 +37,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.title = false
 -- vim.opt.colorcolumn = "80"
 
+vim.opt.rtp:prepend "/Users/hya/.opam/default/share/ocp-indent/vim"
 vim.opt.shortmess:append "c"
 
 -- add the templ extension

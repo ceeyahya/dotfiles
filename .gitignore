@@ -1,0 +1,59 @@
+# Cache and database files
+.opencode/
+**/*.db
+**/*.db-shm
+**/*.db-wal
+
+# Application-specific databases
+**/prompts-library-db*/
+**/prompts-library-db.*.mdb/
+
+# Logs
+.wrangler/
+**/*.log
+**/logs/
+
+# Lock files (package managers, etc.)
+lazy-lock.json
+**/Gemfile.lock
+**/flake.lock
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# Session and recent files
+**/recent
+**/recent_*
+
+# Authentication and tokens (GitHub CLI hosts file contains tokens)
+gh/hosts.yml
+
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Plugin directories (managed as git submodules or by plugin managers)
+tmux/plugins/
+zsh/plugins/*/.git
+
+# Temporary files
+**/*.tmp
+**/*.temp
+**/*.swp
+**/*.swo
+**/.*~
+
+# Editor backup files
+**/*~
+**/*.bak
+**/*.backup
+
+# IDE/Editor specific
+**/.vscode/
+**/.idea/
+
+# OS generated files
+**/Thumbs.db
+**/ehthumbs.db
+
+raycast/

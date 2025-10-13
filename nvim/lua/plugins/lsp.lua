@@ -3,205 +3,13 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
   },
   config = function()
     local lspconfig = require "lspconfig"
-
-    -- Get cmp-nvim-lsp capabilities for better integration
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- Formatting functions
-    local formatters = {
-      lua = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local cmd = "stylua --stdin-filepath " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) .. " -"
-        local result = vim.fn.system(cmd, content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Stylua formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      javascript = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      typescript = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      javascriptreact = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      typescriptreact = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      html = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      astro = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      css = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("prettierd " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Prettierd formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      go = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("gofmt", content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Gofmt formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-
-      gomod = function()
-        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-        local content = table.concat(lines, "\n")
-
-        local result = vim.fn.system("gofmt", content)
-
-        if vim.v.shell_error == 0 then
-          local formatted_lines = vim.split(result, "\n")
-          if formatted_lines[#formatted_lines] == "" then
-            table.remove(formatted_lines)
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, formatted_lines)
-        else
-          vim.notify("Gofmt formatting failed: " .. result, vim.log.levels.ERROR)
-        end
-      end,
-    }
-
-    local function format_buffer()
-      local ft = vim.bo.filetype
-      local formatter = formatters[ft]
-
-      if formatter then
-        formatter()
-      else
-        -- Fallback to LSP formatting if available
-        local clients = vim.lsp.get_active_clients { bufnr = 0 }
-        if #clients > 0 then
-          vim.lsp.buf.format { async = false }
-        else
-          vim.notify("No formatter available for " .. ft, vim.log.levels.WARN)
-        end
-      end
-    end
-
-    -- Setup keymaps function
     local function setup_keymaps(bufnr)
       local opts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -216,10 +24,9 @@ return {
       vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, opts)
       vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
       vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-      vim.keymap.set("n", "<leader>lf", format_buffer, opts)
+      vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
     end
 
-    -- Setup LSP on_attach callback
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -227,7 +34,6 @@ return {
       end,
     })
 
-    -- Configure diagnostics
     vim.diagnostic.config {
       signs = {
         text = {
@@ -251,42 +57,33 @@ return {
       },
     }
 
-    -- Configure LSP handlers
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
     vim.lsp.handlers["textDocument/signatureHelp"] =
       vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
-    -- Helper function to find TypeScript SDK (needed for Astro)
     local function find_typescript_sdk()
-      -- 1. Check local project node_modules first
       local local_ts = vim.fn.getcwd() .. "/node_modules/typescript/lib"
       if vim.fn.isdirectory(local_ts) == 1 then
         return local_ts
       end
 
-      -- 2. Check Volta's current TypeScript installation
       local home = os.getenv "HOME"
       if home then
-        -- Volta stores the current TypeScript in ~/.volta/tools/image/packages/typescript
         local volta_ts = home .. "/.volta/tools/image/packages/typescript/lib"
         if vim.fn.isdirectory(volta_ts) == 1 then
           return volta_ts
         end
 
-        -- Alternative Volta path structure
         local volta_ts_alt = home .. "/.volta/tools/image/node/*/lib/node_modules/typescript/lib"
         local volta_matches = vim.fn.glob(volta_ts_alt, false, true)
         if #volta_matches > 0 then
-          -- Sort and take the latest version
           table.sort(volta_matches)
           return volta_matches[#volta_matches]
         end
       end
 
-      -- 3. Try to find TypeScript through Volta's which command
       local volta_which_tsc = vim.fn.system("volta which tsc 2>/dev/null"):gsub("%s+$", "")
       if volta_which_tsc ~= "" and vim.fn.executable(volta_which_tsc) == 1 then
-        -- Follow symlinks and find the lib directory
         local real_path = vim.fn.resolve(volta_which_tsc)
         local ts_lib = vim.fn.fnamemodify(real_path, ":h:h") .. "/lib"
         if vim.fn.isdirectory(ts_lib) == 1 then
@@ -294,7 +91,6 @@ return {
         end
       end
 
-      -- 4. Try regular which command as fallback
       local ts_path = vim.fn.system("which tsc 2>/dev/null"):gsub("%s+$", "")
       if ts_path ~= "" and vim.fn.executable(ts_path) == 1 then
         local real_path = vim.fn.resolve(ts_path)
@@ -304,7 +100,6 @@ return {
         end
       end
 
-      -- 5. Try global npm root as final fallback
       local global_npm_root = vim.fn.system("npm root -g 2>/dev/null"):gsub("%s+$", "")
       if global_npm_root ~= "" then
         local global_ts = global_npm_root .. "/typescript/lib"
@@ -313,7 +108,6 @@ return {
         end
       end
 
-      -- 6. Manual check of common Volta locations
       if home then
         local common_volta_paths = {
           home .. "/.volta/tools/image/packages/typescript/lib",
@@ -329,24 +123,19 @@ return {
 
       return nil
     end
+
     -- Lua Language Server
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
         Lua = {
-          runtime = {
-            version = "LuaJIT",
-          },
-          diagnostics = {
-            globals = { "vim" },
-          },
+          runtime = { version = "LuaJIT" },
+          diagnostics = { globals = { "vim" } },
           workspace = {
             library = vim.api.nvim_get_runtime_file("", true),
             checkThirdParty = false,
           },
-          telemetry = {
-            enable = false,
-          },
+          telemetry = { enable = false },
         },
       },
     }
@@ -464,7 +253,7 @@ return {
       },
     }
 
-    -- CSS Language Server (This should fix your CSS completion issues!)
+    -- CSS Language Server
     lspconfig.cssls.setup {
       capabilities = capabilities,
       settings = {
@@ -591,6 +380,65 @@ return {
           directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
           semanticTokens = true,
         },
+      },
+    }
+
+    lspconfig.templ.setup {
+      capabilities = capabilities,
+      filetypes = { "templ" },
+    }
+
+    -- JSON Language Server
+    lspconfig.jsonls.setup {
+      capabilities = capabilities,
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    }
+
+    -- YAML Language Server
+    lspconfig.yamlls.setup {
+      capabilities = capabilities,
+      settings = {
+        yaml = {
+          schemaStore = {
+            enable = false,
+            url = "",
+          },
+          schemas = require("schemastore").yaml.schemas(),
+          validate = true,
+          format = {
+            enable = true,
+          },
+          hover = true,
+          completion = true,
+        },
+      },
+    }
+
+    -- Emmet Language Server
+    lspconfig.emmet_ls.setup {
+      capabilities = capabilities,
+      filetypes = {
+        "html",
+        "typescriptreact",
+        "javascriptreact",
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "astro",
+      },
+    }
+
+    -- Typst Language Server
+    lspconfig.tinymist.setup {
+      capabilities = capabilities,
+      settings = {
+        formatterMode = "typstyle",
       },
     }
   end,

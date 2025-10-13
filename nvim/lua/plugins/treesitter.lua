@@ -30,6 +30,7 @@ return {
         "html",
         "css",
         "astro",
+        "templ",
 
         -- Documentation
         "markdown",

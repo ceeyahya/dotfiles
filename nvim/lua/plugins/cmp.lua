@@ -154,14 +154,10 @@ return {
           name = "nvim_lsp",
           priority = 1000,
           entry_filter = function(entry, ctx)
-            -- Convert LSP text completions that contain snippet syntax to snippets
-            local completion_item = entry.completion_item
-            if completion_item.kind == 1 and completion_item.insertText then -- kind 1 = Text
-              local text = completion_item.insertText
-              if text:match "%$%d" or text:match "%${%d}" then
-                completion_item.kind = 15 -- Change to Snippet kind
-                completion_item.insertTextFormat = 2 -- Snippet format
-              end
+            local kind = require("cmp.types").lsp.CompletionItemKind[entry:get_kind()]
+            -- Filter out Text items from LSP if they're too generic
+            if kind == "Text" then
+              return false
             end
             return true
           end,

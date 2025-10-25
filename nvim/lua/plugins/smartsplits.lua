@@ -1,7 +1,9 @@
 return {
   "mrjones2014/smart-splits.nvim",
+  tag = "v2.0.3",
   lazy = false,
   config = function()
+    vim.g.smart_splits_log_level = "error"
     require("smart-splits").setup {
       ignored_filetypes = {
         "nofile",
@@ -10,6 +12,7 @@ return {
         "prompt",
       },
       ignored_buftypes = { "NvimTree" },
+      log_level = "off",
     }
 
     -- Keybindings

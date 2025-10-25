@@ -1,10 +1,9 @@
 theme = vague
-#font-family = "BerkeleyMono Nerd Font Propo"
-#font-family = "Iosevka Prag"
-font-family = "SF Mono"
+font-family = "JetBrainsMono Nerd Font"
 font-style-bold = "Regular"
 font-style-bold-italic = "Regular"
 font-size = 14
+font-feature = calt, liga, dlig, ss01, ss19, cv07, cv18, zero
 cursor-style = bar
 macos-titlebar-style = hidden
 window-subtitle = false

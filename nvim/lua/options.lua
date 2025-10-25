@@ -31,3 +31,10 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.opt.incsearch = true
 -- disable the default status line
 vim.opt.laststatus = 0
+
+-- add filetypes
+vim.filetype.add {
+  extension = {
+    templ = "templ",
+  },
+}

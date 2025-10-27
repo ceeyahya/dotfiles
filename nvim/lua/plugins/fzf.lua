@@ -1,5 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
+  commit = "49ba1184b357b97cf3d6690cd5acffdb9ddeceba",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   cmd = "FzfLua", -- Lazy load on command
   keys = {

@@ -20,8 +20,8 @@ return {
       vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
       vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-      vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
-      vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "<leader>lk", vim.diagnostic.get_prev, opts)
+      vim.keymap.set("n", "<leader>lj", vim.diagnostic.get_next, opts)
       vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
       vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
       vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
@@ -51,15 +51,20 @@ return {
         focusable = true,
         style = "minimal",
         border = "single",
-        source = "always",
+        source = true,
         header = "",
         prefix = "",
       },
     }
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-    vim.lsp.handlers["textDocument/signatureHelp"] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.border = opts.border or "single"
+      opts.max_width = opts.max_width or 80
+      opts.max_height = opts.max_height or 30
+      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+    end
 
     local function find_typescript_sdk()
       local local_ts = vim.fn.getcwd() .. "/node_modules/typescript/lib"
@@ -124,7 +129,6 @@ return {
       return nil
     end
 
-    -- Lua Language Server
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
@@ -140,7 +144,6 @@ return {
       },
     }
 
-    -- HTML Language Server
     lspconfig.html.setup {
       capabilities = capabilities,
       filetypes = { "html", "njk" },
@@ -188,7 +191,6 @@ return {
       },
     }
 
-    -- TypeScript Language Server
     lspconfig.ts_ls.setup {
       capabilities = capabilities,
       init_options = {
@@ -253,7 +255,6 @@ return {
       },
     }
 
-    -- CSS Language Server
     lspconfig.cssls.setup {
       capabilities = capabilities,
       settings = {
@@ -278,7 +279,6 @@ return {
       },
     }
 
-    -- Tailwind CSS Language Server
     lspconfig.tailwindcss.setup {
       capabilities = capabilities,
       settings = {
@@ -318,7 +318,6 @@ return {
       },
     }
 
-    -- Astro Language Server
     lspconfig.astro.setup {
       capabilities = capabilities,
       init_options = (function()
@@ -343,7 +342,6 @@ return {
       },
     }
 
-    -- Go Language Server
     lspconfig.gopls.setup {
       capabilities = capabilities,
       settings = {
@@ -399,7 +397,6 @@ return {
       },
     }
 
-    -- YAML Language Server
     lspconfig.yamlls.setup {
       capabilities = capabilities,
       settings = {
@@ -438,7 +435,6 @@ return {
       filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
     }
 
-    -- Emmet Language Server
     lspconfig.emmet_ls.setup {
       capabilities = capabilities,
       filetypes = {

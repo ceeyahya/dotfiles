@@ -26,7 +26,7 @@ require("lazy").setup {
   },
   install = {
     missing = true,
-    colorscheme = { "vague" }, -- Fallback colorscheme during install
+    colorscheme = { "free" }, -- Fallback colorscheme during install
   },
   checker = {
     enabled = false, -- Disable automatic update checking for performance

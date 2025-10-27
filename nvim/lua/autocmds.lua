@@ -1,7 +1,7 @@
 -- Prevent creation of new comment line when pressing o/O
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-    vim.cmd("set formatoptions-=cro")
+    vim.cmd "set formatoptions-=cro"
   end,
 })
 
@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Yank feedback (great UX, minimal performance cost)
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 40 })
+    vim.highlight.on_yank { higroup = "Visual", timeout = 40 }
   end,
 })
 

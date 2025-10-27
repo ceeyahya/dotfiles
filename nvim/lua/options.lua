@@ -26,11 +26,14 @@ vim.opt.pumheight = 15
 vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 5
 vim.opt.shortmess:append "c"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.opt.incsearch = true
+vim.opt.cmdheight = 0
 -- disable the default status line
 vim.opt.laststatus = 0
+
+vim.cmd [[set iskeyword+=-]]
+vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd "colorscheme free"
 
 -- add filetypes
 vim.filetype.add {

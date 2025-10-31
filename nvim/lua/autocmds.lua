@@ -69,3 +69,20 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.softtabstop = 2
   end,
 })
+
+-- Override separator color in LSP hover markdown
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function(args)
+    local win = vim.api.nvim_get_current_win()
+    local win_config = vim.api.nvim_win_get_config(win)
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+
+    -- Only apply in floating windows with markdown-like content
+    if win_config.relative ~= "" and (buftype == "nofile" or buftype == "") then
+      local ft = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+      if ft == "markdown" or ft == "" then
+        vim.fn.matchadd("LspSeparator", "─", 10)
+      end
+    end
+  end,
+})

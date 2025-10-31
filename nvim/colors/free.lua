@@ -16,28 +16,25 @@ end
 -- Color palette (inspired by vague.nvim but more vibrant and WCAG compliant)
 local c = {
   -- Backgrounds
-  bg = "#141415",
-  bg_alt = "#1c1c24",
-  bg_highlight = "#252530",
-  bg_visual = "#333738",
+  bg = "#181818",
+  bg_highlight = "#232323",
+  bg_visual = "#2D2D2D",
 
   -- Foregrounds
-  fg = "#cdcdcd",
+  fg = "#B8B8B8", -- "#D0D0D0",
   fg_dim = "#878787",
 
-  -- Syntax colors (more vibrant, WCAG AA compliant)
-  -- These will be assigned to semantic groups below
-  accent1 = "#e0bd94", -- Orange (strings)
-  accent2 = "#7da3d9", -- Blue (functions)
-  accent3 = "#b5d989", -- Red (constants)
-  accent4 = "#666666",
+  accent1 = "#EBC88E", -- Orange (strings)
+  accent2 = "#AAA0FA", -- Purple (functions)
+  accent3 = "#E394DC", -- Pink (constants)
+  accent4 = "#636363",
 
   -- UI colors
-  border = "#3a3a3a", -- Very subtle borders
-  error = "#e67c7c",
-  warning = "#f0c674",
-  info = "#7cafc2",
-  hint = "#88c0a0",
+  border = "#3A3A3A", -- Very subtle borders
+  error = "#BF616A",
+  warning = "#EBCB8B",
+  info = "#7FA5C3",
+  hint = "#7DB8A8",
 }
 
 -- ============================================================================
@@ -69,14 +66,11 @@ hl("VertSplit", { fg = c.border })
 hl("WinSeparator", { fg = c.border })
 hl("FloatBorder", { fg = c.border })
 
+hl("LspSeparator", { fg = c.border })
+
 -- Status line
 hl("StatusLine", { fg = c.fg, bg = c.bg })
 hl("StatusLineNC", { fg = c.fg_dim, bg = c.bg })
-
--- Tab line
-hl("TabLine", { fg = c.fg_dim, bg = c.bg_alt })
-hl("TabLineFill", { fg = c.fg_dim, bg = c.bg_alt })
-hl("TabLineSel", { fg = c.fg, bg = c.bg_highlight })
 
 -- Popup menu
 hl("Pmenu", { fg = c.fg, bg = c.bg })
@@ -127,6 +121,9 @@ hl("Type", { fg = c.fg })
 hl("Array", { fg = c.fg })
 hl("Struct", { fg = c.accent2 })
 
+-- Folders
+hl("Directory", { fg = "#87C3FF" })
+
 -- ============================================================================
 -- SYNTAX HIGHLIGHTING (Minimal Philosophy)
 -- Only highlight: strings, constants, comments, top-level definitions
@@ -159,22 +156,21 @@ hl("SpecialComment", { fg = c.fg })
 hl("Debug", { fg = c.fg })
 
 -- HIGHLIGHTED ELEMENTS
-
 -- Strings
-hl("String", { fg = c.accent1 })
-hl("Character", { fg = c.accent1 })
+hl("String", { fg = "#D4A574", bg = "#2d261f" })
+hl("Character", { fg = "#D4A574", bg = "#2d261f" })
 
 -- Constants (numbers, booleans, etc.)
-hl("Constant", { fg = c.accent3 })
-hl("Number", { fg = c.accent3 })
-hl("Boolean", { fg = c.accent3 })
-hl("Float", { fg = c.accent3 })
+hl("Constant", { fg = "#D885C8", bg = "#2d262d" })
+hl("Number", { fg = "#D885C8", bg = "#2d262d" })
+hl("Boolean", { fg = "#D885C8", bg = "#2d262d" })
+hl("Float", { fg = "#D885C8", bg = "#2d262d" })
 
 -- Comments (subtle)
 hl("Comment", { fg = c.accent4 })
 
--- Function definitions (we'll handle this more specifically in Treesitter)
-hl("Function", { fg = c.accent2 })
+-- Function definitions
+hl("Function", { fg = "#9A8AE0", bg = "#26212c" })
 
 -- ============================================================================
 -- TREESITTER
@@ -198,30 +194,21 @@ hl("@punctuation.bracket", { fg = c.fg })
 hl("@punctuation.delimiter", { fg = c.fg })
 hl("@punctuation.special", { fg = c.fg })
 
-hl("@type", { fg = c.fg })
-hl("@type.builtin", { fg = c.fg })
-hl("@type.qualifier", { fg = c.fg })
-
 -- HIGHLIGHTED: Strings
-hl("@string", { fg = c.accent1 })
-hl("@string.escape", { fg = c.accent1 })
-hl("@string.special", { fg = c.accent1 })
+hl("@string", { fg = "#D4A574", bg = "#2d261f" })
+hl("@string.escape", { fg = "#D4A574", bg = "#2d261f" })
+hl("@string.special", { fg = "#D4A574", bg = "#2d261f" })
 
 -- HIGHLIGHTED: Constants
-hl("@constant", { fg = c.accent3 })
-hl("@constant.builtin", { fg = c.accent3 })
-hl("@number", { fg = c.accent3 })
-hl("@boolean", { fg = c.accent3 })
+hl("@constant", { fg = "#D885C8", bg = "#2d262d" })
+hl("@constant.builtin", { fg = "#D885C8", bg = "#2d262d" })
+hl("@number", { fg = "#D885C8", bg = "#2d262d" })
+hl("@boolean", { fg = "#D885C8", bg = "#2d262d" })
 
--- HIGHLIGHTED: Comments
-hl("@comment", { fg = c.accent4 })
-
--- HIGHLIGHTED: Function/Method definitions (top-level only ideally, but Treesitter doesn't always distinguish)
--- For now, we'll highlight all function names but you can refine this
-hl("@function", { fg = c.accent2 })
-hl("@function.builtin", { fg = c.fg }) -- Builtins stay default
-hl("@function.method", { fg = c.accent2 })
-hl("@constructor", { fg = c.accent2 })
+-- HIGHLIGHTED: Functions
+hl("@function", { fg = "#9A8AE0", bg = "#26212c" })
+hl("@function.method", { fg = "#9A8AE0", bg = "#26212c" })
+hl("@constructor", { fg = "#9A8AE0", bg = "#26212c" })
 
 -- Function calls remain default fg (not highlighted)
 hl("@function.call", { fg = c.fg })
@@ -231,8 +218,12 @@ hl("@function.method.call", { fg = c.fg })
 -- All tag-related elements get the same color
 hl("@tag", { fg = c.accent2 })
 hl("@tag.delimiter", { fg = c.accent2 }) -- < > />
-hl("@tag.attribute", { fg = c.fg }) -- Attributes stay default
+hl("@tag.attribute", { fg = c.fg })      -- Attributes stay default
 hl("@type.astro", { fg = c.accent2 })
+hl("@_jsx_element.tsx", { fg = c.accent2 })
+hl("@_jsx_element", { fg = c.accent2 })
+hl("@variable.tsx", { fg = c.accent2 })
+hl("@tag.builtin.tsx", { fg = c.accent2 })
 
 -- Properties/attributes stay default
 hl("@property", { fg = c.fg })

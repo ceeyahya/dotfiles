@@ -3,12 +3,58 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   event = "VeryLazy",
   config = function()
+    local colors = {
+      bg = "#181818",
+      fg = "#b8b8b8",
+      yellow = "#EBCB8B",
+      cyan = "#7db8a8",
+      green = "#7db8a8",
+      orange = "#EBC88E",
+      violet = "#AAA0FA",
+      magenta = "#E394DC",
+      blue = "#87C3FF",
+      red = "#BF616A",
+    }
+
+    local custom_theme = {
+      normal = {
+        a = { bg = colors.violet, fg = colors.bg }, -- Purple bg for normal mode
+        b = { bg = colors.bg, fg = colors.fg }, -- Filename stays fg
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      insert = {
+        a = { bg = colors.green, fg = colors.bg }, -- Green bg for insert
+        b = { bg = colors.bg, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      visual = {
+        a = { bg = colors.magenta, fg = colors.bg }, -- Pink bg for visual
+        b = { bg = colors.bg, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      replace = {
+        a = { bg = colors.red, fg = colors.bg }, -- Red bg for replace
+        b = { bg = colors.bg, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      command = {
+        a = { bg = colors.yellow, fg = colors.bg }, -- Yellow bg for command
+        b = { bg = colors.bg, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      inactive = {
+        a = { bg = colors.bg, fg = colors.fg },
+        b = { bg = colors.bg, fg = colors.fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+    }
+
     require("lualine").setup {
       options = {
-        theme = "auto", -- Auto-detect from your vague colorscheme
+        theme = custom_theme,
         component_separators = "",
         section_separators = "",
-        globalstatus = true, -- Single statusline for all windows
+        globalstatus = true,
         disabled_filetypes = { "alpha", "dashboard", "lazy" },
       },
 
@@ -26,8 +72,8 @@ return {
             "filename",
             path = 1,
             symbols = {
-              modified = " ●",
-              readonly = " ",
+              modified = " ",
+              readonly = " ",
               unnamed = "[No Name]",
             },
           },

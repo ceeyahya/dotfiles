@@ -1,0 +1,226 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "bg": "#181818",
+    "bg_highlight": "#232323",
+    "bg_visual": "#2D2D2D",
+    "fg": "#B8B8B8",
+    "fg_dim": "#878787",
+    "fg_bright": "#D0D0D0",
+    "accent1": "#D4A574",
+    "accent2": "#9A8AE0",
+    "accent3": "#D885C8",
+    "accent4": "#636363",
+    "border": "#3A3A3A",
+    "error": "#BF616A",
+    "warning": "#EBCB8B",
+    "info": "#7FA5C3",
+    "hint": "#7DB8A8",
+    "blue": "#87C3FF",
+    "purple": "#AAA0FA",
+    "pink": "#E394DC",
+    "orange": "#EBC88E"
+  },
+  "theme": {
+    "primary": {
+      "dark": "purple",
+      "light": "accent2"
+    },
+    "secondary": {
+      "dark": "blue",
+      "light": "blue"
+    },
+    "accent": {
+      "dark": "hint",
+      "light": "hint"
+    },
+    "error": {
+      "dark": "#BF616A",
+      "light": "#BF616A"
+    },
+    "warning": {
+      "dark": "#EBCB8B",
+      "light": "#EBCB8B"
+    },
+    "success": {
+      "dark": "#7DB8A8",
+      "light": "#7DB8A8"
+    },
+    "info": {
+      "dark": "#7FA5C3",
+      "light": "#7FA5C3"
+    },
+    "text": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "textMuted": {
+      "dark": "fg_dim",
+      "light": "accent4"
+    },
+    "background": {
+      "dark": "bg",
+      "light": "fg_bright"
+    },
+    "backgroundPanel": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "backgroundElement": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "border": {
+      "dark": "#3A3A3A",
+      "light": "#3A3A3A"
+    },
+    "borderActive": {
+      "dark": "#636363",
+      "light": "#3A3A3A"
+    },
+    "borderSubtle": {
+      "dark": "#3A3A3A",
+      "light": "#3A3A3A"
+    },
+    "diffAdded": {
+      "dark": "#7DB8A8",
+      "light": "#7DB8A8"
+    },
+    "diffRemoved": {
+      "dark": "#BF616A",
+      "light": "#BF616A"
+    },
+    "diffContext": {
+      "dark": "accent4",
+      "light": "accent4"
+    },
+    "diffHunkHeader": {
+      "dark": "accent4",
+      "light": "accent4"
+    },
+    "diffHighlightAdded": {
+      "dark": "#7DB8A8",
+      "light": "#7DB8A8"
+    },
+    "diffHighlightRemoved": {
+      "dark": "#BF616A",
+      "light": "#BF616A"
+    },
+    "diffAddedBg": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "diffRemovedBg": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "diffContextBg": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "diffLineNumber": {
+      "dark": "#3A3A3A",
+      "light": "#B8B8B8"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "bg_highlight",
+      "light": "fg"
+    },
+    "markdownText": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "markdownHeading": {
+      "dark": "purple",
+      "light": "accent2"
+    },
+    "markdownLink": {
+      "dark": "purple",
+      "light": "purple"
+    },
+    "markdownLinkText": {
+      "dark": "hint",
+      "light": "hint"
+    },
+    "markdownCode": {
+      "dark": "accent1",
+      "light": "accent1"
+    },
+    "markdownBlockQuote": {
+      "dark": "accent4",
+      "light": "accent4"
+    },
+    "markdownEmph": {
+      "dark": "orange",
+      "light": "orange"
+    },
+    "markdownStrong": {
+      "dark": "#EBCB8B",
+      "light": "#EBCB8B"
+    },
+    "markdownHorizontalRule": {
+      "dark": "accent4",
+      "light": "accent4"
+    },
+    "markdownListItem": {
+      "dark": "purple",
+      "light": "accent2"
+    },
+    "markdownListEnumeration": {
+      "dark": "hint",
+      "light": "hint"
+    },
+    "markdownImage": {
+      "dark": "blue",
+      "light": "blue"
+    },
+    "markdownImageText": {
+      "dark": "hint",
+      "light": "hint"
+    },
+    "markdownCodeBlock": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "syntaxComment": {
+      "dark": "accent4",
+      "light": "accent4"
+    },
+    "syntaxKeyword": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "syntaxFunction": {
+      "dark": "accent2",
+      "light": "accent2"
+    },
+    "syntaxVariable": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "syntaxString": {
+      "dark": "accent1",
+      "light": "accent1"
+    },
+    "syntaxNumber": {
+      "dark": "accent3",
+      "light": "accent3"
+    },
+    "syntaxType": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "syntaxOperator": {
+      "dark": "fg",
+      "light": "bg"
+    },
+    "syntaxPunctuation": {
+      "dark": "fg",
+      "light": "bg"
+    }
+  }
+}

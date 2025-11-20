@@ -86,3 +86,54 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
+
+-- Syntax highlighting for dotenv files
+vim.api.nvim_create_autocmd("BufRead", {
+  group = vim.api.nvim_create_augroup("dotenv_ft", { clear = true }),
+  pattern = { ".env", ".env.*" },
+  callback = function()
+    vim.bo.filetype = "dosini"
+  end,
+})
+
+-- IDE like highlight when stopping cursor
+vim.api.nvim_create_autocmd("CursorMoved", {
+  group = vim.api.nvim_create_augroup("LspReferenceHighlight", { clear = true }),
+  desc = "Highlight references under cursor",
+  callback = function()
+    -- Only run if the cursor is not in insert mode
+    if vim.fn.mode() ~= "i" then
+      local clients = vim.lsp.get_clients { bufnr = 0 }
+      local supports_highlight = false
+      for _, client in ipairs(clients) do
+        if client.server_capabilities.documentHighlightProvider then
+          supports_highlight = true
+          break -- Found a supporting client, no need to check others
+        end
+      end
+
+      -- 3. Proceed only if an LSP is active AND supports the feature
+      if supports_highlight then
+        vim.lsp.buf.clear_references()
+        vim.lsp.buf.document_highlight()
+      end
+    end
+  end,
+})
+
+-- IDE like highlight when stopping cursor
+vim.api.nvim_create_autocmd("CursorMovedI", {
+  group = "LspReferenceHighlight",
+  desc = "Clear highlights when entering insert mode",
+  callback = function()
+    vim.lsp.buf.clear_references()
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.textwidth = 120    -- Wrap at 80 characters
+    vim.opt_local.colorcolumn = "120" -- Show column at 80
+  end,
+})

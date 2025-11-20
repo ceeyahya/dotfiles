@@ -51,6 +51,7 @@ hl("Cursor", { fg = c.bg, bg = c.fg })
 hl("CursorLine", { bg = c.bg_highlight })
 hl("CursorLineNr", { fg = c.fg, bg = c.bg_highlight })
 hl("LineNr", { fg = c.fg_dim })
+hl('ColorColumn', { bg = '#1e1e1e' })
 
 -- Visual selection
 hl("Visual", { bg = c.bg_visual })
@@ -256,10 +257,81 @@ hl("@lsp.type.macro", { fg = c.fg })
 hl("@lsp.type.function", { fg = c.accent2 })
 hl("@lsp.type.method", { fg = c.accent2 })
 
+hl("@lsp.typemod.function.defaultLibrary", { fg = c.accent2 })
+hl("@lsp.typemod.function.globalScope", { fg = c.accent2 })
+
 -- LSP References/usages
 hl("LspReferenceText", { bg = c.bg_highlight })
 hl("LspReferenceRead", { bg = c.bg_highlight })
 hl("LspReferenceWrite", { bg = c.bg_highlight })
+
+-- ============================================================================
+-- MARKDOWN / VIMWIKI / RENDER-MARKDOWN
+-- ============================================================================
+
+-- Headings (no backgrounds, just colors)
+hl("markdownH1", { fg = c.accent2, bold = true })
+hl("markdownH2", { fg = c.accent2, bold = true })
+hl("markdownH3", { fg = c.accent3, bold = true })
+hl("markdownH4", { fg = c.accent3 })
+hl("markdownH5", { fg = c.fg })
+hl("markdownH6", { fg = c.fg })
+
+-- render-markdown headings (no backgrounds)
+hl("RenderMarkdownH1", { fg = c.accent2, bold = true })
+hl("RenderMarkdownH2", { fg = c.accent2, bold = true })
+hl("RenderMarkdownH3", { fg = c.accent3, bold = true })
+hl("RenderMarkdownH4", { fg = c.accent3 })
+hl("RenderMarkdownH5", { fg = c.fg })
+hl("RenderMarkdownH6", { fg = c.fg_dim })
+
+-- Code blocks (same background as editor)
+hl("markdownCode", { fg = c.accent1, bg = "#2d261f" })             -- Inline code with orange badge
+hl("markdownCodeBlock", { fg = c.fg, bg = c.bg })                  -- Block code, same as editor bg
+hl("RenderMarkdownCode", { bg = c.bg })                            -- Code block background
+hl("RenderMarkdownCodeInline", { fg = c.accent1, bg = "#2d261f" }) -- Inline code badge
+
+-- Links
+hl("markdownLink", { fg = c.accent2, underline = true })
+hl("markdownUrl", { fg = c.accent2 })
+hl("RenderMarkdownLink", { fg = c.accent2, underline = true })
+
+-- Lists
+hl("markdownListMarker", { fg = c.accent3 })
+hl("RenderMarkdownBullet", { fg = c.accent3 })
+
+-- Bold/Italic
+hl("markdownBold", { fg = c.fg, bold = true })
+hl("markdownItalic", { fg = c.fg, italic = true })
+hl("RenderMarkdownBold", { fg = c.fg, bold = true })
+hl("RenderMarkdownItalic", { fg = c.fg, italic = true })
+
+-- Quotes
+hl("markdownBlockquote", { fg = c.fg_dim, italic = true })
+hl("RenderMarkdownQuote", { fg = c.fg_dim })
+
+-- Horizontal rules
+hl("markdownRule", { fg = c.border })
+hl("RenderMarkdownDash", { fg = c.border })
+
+-- YAML frontmatter (pink keys, orange values)
+hl("yamlBlockMappingKey", { fg = c.accent3 }) -- Pink for keys
+hl("yamlPlainScalar", { fg = c.accent1 })     -- Orange for values
+hl('@property.yaml', { fg = c.accent3 })  -- Pink for keys
+hl('@string.yaml', { fg = c.accent1 })  -- Orange for values
+hl('@keyword.directive.markdown', { fg = c.accent3 })  -- Pink for --- markers
+
+-- Vimwiki specific
+hl("VimwikiHeader1", { fg = c.accent2, bold = true })
+hl("VimwikiHeader2", { fg = c.accent2, bold = true })
+hl("VimwikiHeader3", { fg = c.accent3, bold = true })
+hl("VimwikiHeader4", { fg = c.accent3 })
+hl("VimwikiHeader5", { fg = c.fg })
+hl("VimwikiHeader6", { fg = c.fg })
+hl("VimwikiLink", { fg = c.accent2, underline = true })
+hl("VimwikiList", { fg = c.accent3 })
+hl("VimwikiTag", { fg = c.accent3 })
+hl("VimwikiCode", { fg = c.accent1, bg = "#2d261f" })
 
 -- ============================================================================
 -- GIT SIGNS

@@ -1,0 +1,80 @@
+# btop theme - "free"
+# Matches the Neovim "free" theme aesthetic
+
+# Main background
+theme[main_bg]="#181818"
+
+# Main text color
+theme[main_fg]="#B8B8B8"
+
+# Title color
+theme[title]="#B8B8B8"
+
+# Highlight/selected color
+theme[hi_fg]="#AAA0FA"
+
+# Divider lines
+theme[div_line]="#3A3A3A"
+
+# Item inactive
+theme[inactive_fg]="#636363"
+
+# Process box
+theme[proc_misc]="#7DB8A8"
+theme[proc_start]="#AAA0FA"
+theme[proc_running]="#7DB8A8"
+theme[proc_sleeping]="#87C3FF"
+theme[proc_stopped]="#636363"
+theme[proc_zombie]="#BF616A"
+
+# Box borders (all consistent subtle gray)
+theme[cpu_box]="#3A3A3A"
+theme[mem_box]="#3A3A3A"
+theme[net_box]="#3A3A3A"
+theme[proc_box]="#3A3A3A"
+
+# Graph colors
+theme[graph_text]="#B8B8B8"
+
+# Meter colors
+theme[meter_bg]="#232323"
+
+# CPU graph gradient (5 colors from low to high usage)
+theme[cpu_start]="#7DB8A8"
+theme[cpu_mid]="#87C3FF"
+theme[cpu_end]="#AAA0FA"
+
+# Memory/Disk colors
+theme[mem_start]="#7DB8A8"
+theme[mem_mid]="#87C3FF"
+theme[mem_end]="#AAA0FA"
+
+# Download/Upload
+theme[download_start]="#7DB8A8"
+theme[download_mid]="#87C3FF"
+theme[download_end]="#AAA0FA"
+
+theme[upload_start]="#E394DC"
+theme[upload_mid]="#AAA0FA"
+theme[upload_end]="#EBC88E"
+
+# Process colors
+theme[process_start]="#AAA0FA"
+theme[process_mid]="#87C3FF"
+theme[process_end]="#7DB8A8"
+
+# Temperature (cool to hot)
+theme[temp_start]="#7DB8A8"
+theme[temp_mid]="#EBC88E"
+theme[temp_end]="#BF616A"
+
+# Selected/highlighted items
+theme[selected_bg]="#2D2D2D"
+theme[selected_fg]="#D0D0D0"
+
+# Input field
+theme[input_fg]="#B8B8B8"
+theme[input_bg]="#232323"
+
+# Urgent/error
+theme[urgent]="#BF616A"

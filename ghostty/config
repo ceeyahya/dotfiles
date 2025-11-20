@@ -1,9 +1,10 @@
 theme = free
-font-family = "JetBrainsMono Nerd Font"
+# font-family = "JetBrainsMono Nerd Font"
+font-family = "Berkeley Mono"
 font-style-bold = "Regular"
 font-style-bold-italic = "Regular"
 font-size = 14
-font-feature = calt, liga, dlig, ss01, ss19, cv07, cv18, zero
+# font-feature = calt, liga, dlig, ss01, ss19, cv07, cv18, zero
 cursor-style = bar
 macos-titlebar-style = hidden
 window-subtitle = false
@@ -11,6 +12,7 @@ window-padding-x = 8
 window-save-state = always
 unfocused-split-opacity = 0.4
 mouse-hide-while-typing = true
+adjust-cell-height = 4
 
 # keybind = ctrl+a>v=new_split:right
 # keybind = ctrl+a>minus=new_split:down

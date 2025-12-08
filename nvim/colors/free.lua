@@ -285,6 +285,11 @@ hl("RenderMarkdownH4", { fg = c.accent3 })
 hl("RenderMarkdownH5", { fg = c.fg })
 hl("RenderMarkdownH6", { fg = c.fg_dim })
 
+-- Hide markdown code fence markers
+hl("@markup.raw.delimiter.markdown", { fg = c.bg }) -- Make fence markers invisible
+hl("@markup.raw.block.markdown", { fg = c.fg })     -- Keep code content visible
+hl("@markup.raw.delimiter.markdown", { fg = c.bg, bg = c.bg })
+
 -- Code blocks (same background as editor)
 hl("markdownCode", { fg = c.accent1, bg = "#2d261f" })             -- Inline code with orange badge
 hl("markdownCodeBlock", { fg = c.fg, bg = c.bg })                  -- Block code, same as editor bg

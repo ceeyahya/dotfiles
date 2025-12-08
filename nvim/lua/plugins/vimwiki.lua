@@ -2,10 +2,10 @@ return {
   "vimwiki/vimwiki",
   event = "BufEnter *.md",
   keys = {
-    { "<leader>ww", "<cmd>VimwikiIndex<cr>",   desc = "Open Zettelkasten index" },
-    { "<leader>ws", "<cmd>VimwikiIndex 2<cr>", desc = "Open Scratchpad index" },
+    { "<leader>zi", "<cmd>VimwikiIndex<cr>",   desc = "Open Zettelkasten index" },
+    { "<leader>si", "<cmd>VimwikiIndex 2<cr>", desc = "Open Scratchpad index" },
     {
-      "<leader>wp",
+      "<leader>sp",
       function()
         local date = os.date "%Y-%m-%d"
         local filepath = vim.fn.expand("~/cerebro/scratchpad/" .. date .. ".md")
@@ -14,7 +14,7 @@ return {
       desc = "Open today's scratchpad",
     },
     {
-      "<leader>wn",
+      "<leader>zn",
       function()
         local title = vim.fn.input "Note title: "
         if title == "" then
@@ -47,6 +47,9 @@ return {
           "",
         }
         vim.api.nvim_buf_set_lines(0, 0, 0, false, template)
+
+        print("Template inserted")
+
         vim.cmd "normal! G"
       end,
       desc = "New Zettel note",
@@ -81,6 +84,9 @@ return {
       html = 1,
       mouse = 0,
     }
+
+    -- Disable specific vimwiki mappings we want to override
+    vim.g.vimwiki_use_calendar = 0
   end,
   config = function()
     -- Force markdown filetype for Cerebro files AFTER vimwiki loads
@@ -94,12 +100,12 @@ return {
 
         -- Scratchpad-specific keymaps
         if filepath:match "cerebro/scratchpad" then
-          vim.keymap.set("n", "<leader>wd", function()
+          vim.keymap.set("n", "<leader>sd", function()
             local date = os.date "%Y-%m-%d"
             vim.api.nvim_put({ date }, "c", true, true)
           end, { buffer = true, desc = "Insert today's date" })
 
-          vim.keymap.set("n", "<leader>wh", function()
+          vim.keymap.set("n", "<leader>sh", function()
             vim.api.nvim_put({ "---" }, "l", true, true)
           end, { buffer = true, desc = "Insert separator" })
         end

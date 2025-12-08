@@ -10,29 +10,23 @@ return {
     local lspconfig = require "lspconfig"
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    local function setup_keymaps(bufnr)
-      local opts = { noremap = true, silent = true, buffer = bufnr }
+    -- ========================================================================
+    -- SET HOVER HANDLER GLOBALLY FIRST
+    -- ========================================================================
 
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-      vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-      vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-      vim.keymap.set("n", "<leader>lk", vim.diagnostic.get_prev, opts)
-      vim.keymap.set("n", "<leader>lj", vim.diagnostic.get_next, opts)
-      vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
-      vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-      vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
+    local orig_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.border = opts.border or "single"
+      opts.max_width = opts.max_width or 100
+      opts.max_height = opts.max_height or 30
+
+      return orig_open_floating_preview(contents, syntax, opts, ...)
     end
 
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        setup_keymaps(ev.buf)
-      end,
-    })
+    -- ========================================================================
+    -- DIAGNOSTIC CONFIGURATION
+    -- ========================================================================
 
     vim.diagnostic.config {
       signs = {
@@ -57,17 +51,39 @@ return {
       },
     }
 
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    -- ========================================================================
+    -- KEYMAPS
+    -- ========================================================================
 
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
+    local function setup_keymaps(bufnr)
+      local opts = { noremap = true, silent = true, buffer = bufnr }
 
-      opts.border = opts.border or "single"
-      opts.max_width = opts.max_width or 80
-      opts.max_height = opts.max_height or 30
-
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+      vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+      vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
+      vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
+      vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+      vim.keymap.set("n", "<leader>lf", function()
+        vim.lsp.buf.format { async = true }
+      end, opts)
     end
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+      callback = function(ev)
+        setup_keymaps(ev.buf)
+      end,
+    })
+
+    -- ========================================================================
+    -- HELPER FUNCTIONS
+    -- ========================================================================
 
     local function find_typescript_sdk()
       local local_ts = vim.fn.getcwd() .. "/node_modules/typescript/lib"
@@ -132,6 +148,10 @@ return {
       return nil
     end
 
+    -- ========================================================================
+    -- LSP SERVER CONFIGURATIONS
+    -- ========================================================================
+
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
@@ -192,6 +212,10 @@ return {
           mirrorCursorOnMatchingTag = false,
         },
       },
+    }
+
+    lspconfig.zls.setup {
+      capabilities = capabilities,
     }
 
     lspconfig.ts_ls.setup {
@@ -389,7 +413,6 @@ return {
       filetypes = { "templ" },
     }
 
-    -- JSON Language Server
     lspconfig.jsonls.setup {
       capabilities = capabilities,
       settings = {
@@ -452,7 +475,6 @@ return {
       },
     }
 
-    -- Typst Language Server
     lspconfig.tinymist.setup {
       capabilities = capabilities,
       settings = {

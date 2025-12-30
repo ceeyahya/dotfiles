@@ -41,3 +41,9 @@ vim.filetype.add {
     templ = "templ",
   },
 }
+
+vim.filetype.add {
+  extension = {
+    liquid = "liquid",
+  },
+}

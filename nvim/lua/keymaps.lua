@@ -51,3 +51,6 @@ vim.keymap.set({ "n", "i", "v" }, "<ScrollWheelLeft>", "<Nop>", { silent = true 
 vim.keymap.set({ "n", "i", "v" }, "<ScrollWheelRight>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "i", "v" }, "<ScrollWheelUp>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "i", "v" }, "<ScrollWheelDown>", "<Nop>", { silent = true })
+
+-- Append ; to the end of a line
+keymap.set("n", ";;", "A;<Esc>", { noremap = true, silent = true, desc = "Append semicolon to end of line" })

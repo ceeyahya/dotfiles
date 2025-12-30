@@ -10,10 +10,6 @@ return {
     local lspconfig = require "lspconfig"
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- ========================================================================
-    -- SET HOVER HANDLER GLOBALLY FIRST
-    -- ========================================================================
-
     local orig_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
@@ -23,10 +19,6 @@ return {
 
       return orig_open_floating_preview(contents, syntax, opts, ...)
     end
-
-    -- ========================================================================
-    -- DIAGNOSTIC CONFIGURATION
-    -- ========================================================================
 
     vim.diagnostic.config {
       signs = {
@@ -51,10 +43,6 @@ return {
       },
     }
 
-    -- ========================================================================
-    -- KEYMAPS
-    -- ========================================================================
-
     local function setup_keymaps(bufnr)
       local opts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -65,8 +53,8 @@ return {
       vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
       vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-      vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
-      vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "<leader>lk", vim.diagnostic.get_prev, opts)
+      vim.keymap.set("n", "<leader>lj", vim.diagnostic.get_next, opts)
       vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
       vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
       vim.keymap.set("n", "<leader>lf", function()
@@ -80,10 +68,6 @@ return {
         setup_keymaps(ev.buf)
       end,
     })
-
-    -- ========================================================================
-    -- HELPER FUNCTIONS
-    -- ========================================================================
 
     local function find_typescript_sdk()
       local local_ts = vim.fn.getcwd() .. "/node_modules/typescript/lib"
@@ -148,10 +132,6 @@ return {
       return nil
     end
 
-    -- ========================================================================
-    -- LSP SERVER CONFIGURATIONS
-    -- ========================================================================
-
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
@@ -214,10 +194,6 @@ return {
       },
     }
 
-    lspconfig.zls.setup {
-      capabilities = capabilities,
-    }
-
     lspconfig.ts_ls.setup {
       capabilities = capabilities,
       init_options = {
@@ -278,6 +254,19 @@ return {
         },
         completions = {
           completeFunctionCalls = true,
+        },
+      },
+    }
+
+    lspconfig.theme_check.setup {
+      capabilities = capabilities,
+      cmd = { "shopify", "theme", "language-server" },
+      filetypes = { "liquid" },
+      root_dir = lspconfig.util.root_pattern(".theme-check.yml", ".git"),
+      settings = {
+        themeCheck = {
+          checkOnSave = true,
+          checkOnChange = true,
         },
       },
     }

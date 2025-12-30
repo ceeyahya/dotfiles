@@ -24,6 +24,7 @@ return {
             "json",
             "yaml",
             "markdown",
+            "liquid",
           },
         },
         null_ls.builtins.formatting.goimports,
